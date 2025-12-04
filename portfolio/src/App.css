@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+
+
+:root{
+  --bw-bg-light: #ffffff;
+  --bw-text-light: #000000;
+  --bw-bg-dark: #000000;
+  --bw-text-dark: #ffffff;
+}
+
+/* base */
+html,body,#root{height:100%}
+.app-root {
+  background: var(--bw-bg-light);
+  color: var(--bw-text-light);
+  transition: background-color 420ms cubic-bezier(.2,.9,.2,1), color 420ms cubic-bezier(.2,.9,.2,1);
+}
+html.dark .app-root {
+  background: var(--bw-bg-dark);
+  color: var(--bw-text-dark);
+}
+
+/* cards & subtle borders */
+.card {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 1.1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  transition: transform 260ms ease, border-color 360ms ease, background-color 360ms ease;
+}
+html.dark .card { border-color: rgba(255,255,255,0.06); }
+
+/* primary button */
+.btn-primary {
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:.6rem 1rem; border-radius:10px; font-weight:600;
+  border:1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  transition: transform 200ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+html.dark .btn-primary { border-color: rgba(255,255,255,0.06); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
+
+/* small utility */
+.small { font-size:.92rem }
+.link-subtle { text-decoration: underline; text-underline-offset: 4px; }
+
+/* fixed footer */
+.footer-fixed {
+  position: fixed; bottom: 0; left: 0; width: 100%;
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  transition: background-color 320ms ease, border-color 320ms ease;
+}
+html.dark .footer-fixed { border-top-color: rgba(255,255,255,0.04); }
+
+/* animations */
+@keyframes fadeInUp { from { opacity:0; transform: translateY(10px) } to { opacity:1; transform: translateY(0) } }
+@keyframes floatSlow { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+.fade-in-up { animation: fadeInUp 520ms cubic-bezier(.2,.9,.2,1) both; }
+.float-slow { animation: floatSlow 3.6s ease-in-out infinite; }
+
+/* micro-interactions for nav items */
+.nav-item { transition: transform 200ms ease, box-shadow 200ms ease, border-color 180ms ease; }
+.nav-item:hover { transform: translateY(-3px) }
+
+/* progress bar fill uses currentColor logic via inline style */
+.progress-track { background: transparent; border-radius: 9999px; overflow:hidden; border:1px solid rgba(0,0,0,0.06) }
+html.dark .progress-track { border-color: rgba(255,255,255,0.06) }
